@@ -4,7 +4,7 @@ var generateBtn = document.querySelector("#generate");
 var lowers = "abcdefghijklmnopqrstuvwxyz";
 console.log(lowers);
 var splitLowers = lowers.split("");
-console.log(SplitLowers[1]); 
+console.log(splitLowers[1]); 
 
 var uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 console.log(uppers);
@@ -16,59 +16,54 @@ console.log(numbers);
 var splitNumbers = numbers.split("");
 console.log(splitNumbers[1]); 
 
-var special = "!@#$%^&*(){}[]-=+<>/";
+var special = "!@#$%^&*";
 console.log(special);
 var splitSpecial = special.split("");
 console.log(splitSpecial[1]); 
 
-var selectedCharacters;
-
 function generatePassword(){
-  var finalValue = "";
+  var password = "";
   var characterCount = prompt("How many characters?");
-  var includeLower = confirm("Allow lower case characters?");
-  var includeUpper = confirm("Allow upper case characters?");
-  var includeNumbers = confirm("Allow numbers?");
-  var includeSpecial = confirm("Allow special characters?");
+  var includeLower = confirm("Allow lower case characters?"); //sets true or false
+  var includeUpper = confirm("Allow upper case characters?"); //sets true or false
+  var includeNumbers = confirm("Allow numbers?");             //sets true or false
+  var includeSpecial = confirm("Allow special characters?");  //sets true or false
+  var selectedCharacters = [];
 
   if (includeLower) {
-    var selectedCharacters = selectedCharacter.concat(splitLowers);
+    var selectedCharacters = selectedCharacters.concat(splitLowers);
   } 
 
   if (includeUpper) {
-    var selectedCharacters = selectedCharacter.concat(splitUppers);
+    var selectedCharacters = selectedCharacters.concat(splitUppers);
   } 
 
-  if (includeNumber) {
-    var selectedCharacters = selectedCharacter.concat(splitNumbers);
+  if (includeNumbers) {
+    var selectedCharacters = selectedCharacters.concat(splitNumbers);
   }
 
   if (includeSpecial) {
-    var selectedCharacters = selectedCharacter.concat(splitSpecial);
+    var selectedCharacters = selectedCharacters.concat(splitSpecial);
   }
 
+console.log(selectedCharacters)
 
-  for (i = 1; i <= characterCount; i++) {
-    var char = Math.floor(Math.random()
-                  * str.length +1);
+
+
+  for (let i = 1; i <= characterCount; i++) {
+    var randomindex = Math.floor(Math.random()
+                  * selectedCharacters.length);
   
-    finalValue += str.charAt(char)
+    password += selectedCharacters[randomindex]
   
   }
-  return finalValue
+  return password
 }
+
+
 
 
 // if includeNumbers()
-
-for (i = 1; i <= characterCount; i++) {
-  var char = Math.floor(Math.random()
-                * str.length +1);
-
-  password += str.charAt(char)
-
-}
-return password;
 
 // Don't touch anything below
 // Write password to the #password input
@@ -83,4 +78,6 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-datatype that can store lots of potential characters
+// datatype that can store lots of potential characters
+
+//use the push method to add items in the array
