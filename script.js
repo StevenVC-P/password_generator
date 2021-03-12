@@ -7,79 +7,77 @@ var splitLowers = lowers.split("");
 console.log(splitLowers[1]); 
 
 var uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-console.log(uppers);
 var splitUppers = uppers.split("");
-console.log(splitUppers[1]); 
 
 var numbers = "0123456789";
-console.log(numbers);
 var splitNumbers = numbers.split("");
-console.log(splitNumbers[1]); 
 
 var special = "!@#$%^&*";
-console.log(special);
 var splitSpecial = special.split("");
-console.log(splitSpecial[1]); 
+
+var selectedCharacters = [];
+var characterCount;
+var password = "";
+
+function askUser(){                                                                      //seting up the function
+  // var characterCount =                                                                  //sets characterCount to a number
+  var userResponse = prompt("How many characters? (Please pick between 8 and 128");
+  characterCount = parseInt(userResponse)   // Creates user prompt to create a value for characterCount
+  if ( characterCount < 8 || characterCount > 128 || isNaN(characterCount) ){             // Begins a check is the value is or is not between 8 and 128
+    alert("Please enter a number between 8 and 128");                                   // Sends an alert for a wrong value
+    askUser();                                                                          // restarts the function
+  }
+  return;
+}
+
+function charCounter(){
+  for (let i = 1; i <= characterCount; i++) {
+    var randomindex = Math.floor(Math.random()
+                  * selectedCharacters.length);
+  
+    password += selectedCharacters[randomindex];
+    console.log(password)
+  //   if (includeLower) && password.includes(lowers) ;  //should it be an checking the array?
+    
+  }
+}
 
 function generatePassword(){
-  var password = "";
+  password = "";
+  selectedCharacters= [];
 
-  // askUser();
 
-  function askUser(){
-    var characterCount = prompt("How many characters? (Please pick between 8 and 128");
-    if ( characterCount < 8 || characterCount > 128 ){
+  //  askUser(); parceInt()
 
-      alert("Please enter a number between 8 and 128");
-      characterCount = 10
-      askUser();
-    } else {
-     return characterCount;
-    }
-  }
-
-  var charCount = askUser();
+  askUser();
 
   var includeLower = confirm("Allow lower case characters?"); //sets true or false
   var includeUpper = confirm("Allow upper case characters?"); //sets true or false
   var includeNumbers = confirm("Allow numbers?");             //sets true or false
   var includeSpecial = confirm("Allow special characters?");  //sets true or false
-  var selectedCharacters = [];
+  
 
   if (includeLower) {
-    var selectedCharacters = selectedCharacters.concat(splitLowers);
+    selectedCharacters = selectedCharacters.concat(splitLowers);
   } 
 
   if (includeUpper) {
-    var selectedCharacters = selectedCharacters.concat(splitUppers);
+    selectedCharacters = selectedCharacters.concat(splitUppers);
   } 
 
   if (includeNumbers) {
-    var selectedCharacters = selectedCharacters.concat(splitNumbers);
+    selectedCharacters = selectedCharacters.concat(splitNumbers);
   }
 
   if (includeSpecial) {
-    var selectedCharacters = selectedCharacters.concat(splitSpecial);
+    selectedCharacters = selectedCharacters.concat(splitSpecial);
   }
 
   console.log(selectedCharacters)
 
-  charCounter(charCount);
-
-  function charCounter(){
-
-    for (let i = 1; i <= charCount; i++) {
-      var randomindex = Math.floor(Math.random()
-                    * selectedCharacters.length);
-    
-      password += selectedCharacters[randomindex];
-    
-    }
-  }
-  return password
+  charCounter();
+  return password;
 }
-
-
 
 
 // if includeNumbers()
@@ -99,4 +97,4 @@ generateBtn.addEventListener("click", writePassword);
 
 // datatype that can store lots of potential characters
 
-//use the push method to add items in the array
+//use the push method to add items in the
