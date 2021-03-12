@@ -23,7 +23,23 @@ console.log(splitSpecial[1]);
 
 function generatePassword(){
   var password = "";
-  var characterCount = prompt("How many characters?");
+
+  // askUser();
+
+  function askUser(){
+    var characterCount = prompt("How many characters? (Please pick between 8 and 128");
+    if ( characterCount < 8 || characterCount > 128 ){
+
+      alert("Please enter a number between 8 and 128");
+      characterCount = 10
+      askUser();
+    } else {
+     return characterCount;
+    }
+  }
+
+  var charCount = askUser();
+
   var includeLower = confirm("Allow lower case characters?"); //sets true or false
   var includeUpper = confirm("Allow upper case characters?"); //sets true or false
   var includeNumbers = confirm("Allow numbers?");             //sets true or false
@@ -46,16 +62,19 @@ function generatePassword(){
     var selectedCharacters = selectedCharacters.concat(splitSpecial);
   }
 
-console.log(selectedCharacters)
+  console.log(selectedCharacters)
 
+  charCounter(charCount);
 
+  function charCounter(){
 
-  for (let i = 1; i <= characterCount; i++) {
-    var randomindex = Math.floor(Math.random()
-                  * selectedCharacters.length);
-  
-    password += selectedCharacters[randomindex]
-  
+    for (let i = 1; i <= charCount; i++) {
+      var randomindex = Math.floor(Math.random()
+                    * selectedCharacters.length);
+    
+      password += selectedCharacters[randomindex];
+    
+    }
   }
   return password
 }
