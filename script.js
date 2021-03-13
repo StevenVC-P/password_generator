@@ -1,17 +1,12 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var lowers = "abcdefghijklmnopqrstuvwxyz";
-console.log(lowers);
+var lowers = "abcdefghijklmnopqrstuvwxyz";;
 var splitLowers = lowers.split("");
-console.log(splitLowers[1]); 
-
 var uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var splitUppers = uppers.split("");
-
 var numbers = "0123456789";
 var splitNumbers = numbers.split("");
-
 var special = "!@#$%^&*";
 var splitSpecial = special.split("");
 
@@ -19,35 +14,34 @@ var selectedCharacters = [];
 var characterCount;
 var password = "";
 
-function askUser(){                                                                      //seting up the function
-  // var characterCount =                                                                  //sets characterCount to a number
+
+function askUser() {                                                                      //seting up the function
   var userResponse = prompt("How many characters? (Please pick between 8 and 128");
-  characterCount = parseInt(userResponse)   // Creates user prompt to create a value for characterCount
-  if ( characterCount < 8 || characterCount > 128 || isNaN(characterCount) ){             // Begins a check is the value is or is not between 8 and 128
+  characterCount = parseInt(userResponse)                                                  // Creates user prompt to create a value for characterCount
+  if (characterCount < 8 || characterCount > 128 || isNaN(characterCount)) {             // Begins a check is the value is or is not between 8 and 128
     alert("Please enter a number between 8 and 128");                                   // Sends an alert for a wrong value
     askUser();                                                                          // restarts the function
   }
   return;
 }
 
-function charCounter(){
+
+
+
+function charCounter() {
   for (let i = 1; i <= characterCount; i++) {
     var randomindex = Math.floor(Math.random()
-                  * selectedCharacters.length);
-  
+      * selectedCharacters.length);
+
     password += selectedCharacters[randomindex];
     console.log(password)
-  //   if (includeLower) && password.includes(lowers) ;  //should it be an checking the array?
-    
+
   }
 }
 
-function generatePassword(){
+function generatePassword() {
   password = "";
-  selectedCharacters= [];
-
-
-  //  askUser(); parceInt()
+  selectedCharacters = [];
 
   askUser();
 
@@ -55,15 +49,14 @@ function generatePassword(){
   var includeUpper = confirm("Allow upper case characters?"); //sets true or false
   var includeNumbers = confirm("Allow numbers?");             //sets true or false
   var includeSpecial = confirm("Allow special characters?");  //sets true or false
-  
 
   if (includeLower) {
     selectedCharacters = selectedCharacters.concat(splitLowers);
-  } 
+  }
 
   if (includeUpper) {
     selectedCharacters = selectedCharacters.concat(splitUppers);
-  } 
+  }
 
   if (includeNumbers) {
     selectedCharacters = selectedCharacters.concat(splitNumbers);
@@ -73,9 +66,10 @@ function generatePassword(){
     selectedCharacters = selectedCharacters.concat(splitSpecial);
   }
 
-  console.log(selectedCharacters)
+
 
   charCounter();
+
   return password;
 }
 
